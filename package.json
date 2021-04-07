@@ -1,0 +1,32 @@
+{
+  "name": "use-drag-within",
+  "version": "1.0.0",
+  "description": "A React hook to drag an element around within a container",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "react": "^17.0.2",
+    "typescript": "^4.2.3"
+  },
+  "peerDependencies": {
+    "react": "^17.0.2"
+  },
+  "scripts": {
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rtwayland/useDragWithin.git"
+  },
+  "author": "Raleigh Wayland",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rtwayland/useDragWithin/issues"
+  },
+  "homepage": "https://github.com/rtwayland/useDragWithin#readme"
+}
