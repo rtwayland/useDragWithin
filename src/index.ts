@@ -26,22 +26,20 @@ const useDragWithin = (
   const [startPosition, setStartPosition] = useState<Position>(positionReset);
 
   useEffect(() => {
-    if (condition) {
-      const [containerWidth, containerHeight] = getRefWidthHeight(containerRef);
-      const [dragItemWidth, dragItemHeight] = getRefWidthHeight(dragItemRef);
-      const hasDimensions =
-        containerWidth && dragItemWidth && containerHeight && dragItemHeight;
-      if (pristine && hasDimensions && initialPosition) {
-        const sanitized = sanitizePosition(
-          initialPosition,
-          { containerWidth, containerHeight },
-          { dragItemWidth, dragItemHeight }
-        );
-        if (position.x !== sanitized.x || position.y !== sanitized.y)
-          setPosition(sanitized);
-      }
+    const [containerWidth, containerHeight] = getRefWidthHeight(containerRef);
+    const [dragItemWidth, dragItemHeight] = getRefWidthHeight(dragItemRef);
+    const hasDimensions =
+      containerWidth && dragItemWidth && containerHeight && dragItemHeight;
+    if (pristine && hasDimensions && initialPosition) {
+      const sanitized = sanitizePosition(
+        initialPosition,
+        { containerWidth, containerHeight },
+        { dragItemWidth, dragItemHeight }
+      );
+      if (position.x !== sanitized.x || position.y !== sanitized.y)
+        setPosition(sanitized);
     }
-  }, [condition, containerRef, dragItemRef, initialPosition, pristine]);
+  }, [containerRef, dragItemRef, initialPosition, pristine]);
 
   const handleMouseDown = (event: MouseEvent) => {
     if (condition) {
@@ -89,7 +87,7 @@ const useDragWithin = (
     else removeMouseMove();
 
     return removeMouseMove;
-  }, [mouseIsDown]);
+  }, [condition, mouseIsDown]);
 
   const documentMouseDown = () => setMouseIsDown(true);
   const documentMouseUp = () => {
@@ -111,7 +109,7 @@ const useDragWithin = (
     }
 
     return removeListeners;
-  }, []);
+  }, [condition]);
 
   return [position, handleMouseDown];
 };
